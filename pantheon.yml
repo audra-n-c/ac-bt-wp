@@ -7,3 +7,12 @@ workflows:
       - type: webphp
         description: 'Push changes back to GitHub if needed'
         script: private/scripts/quicksilver/quicksilver-pushback/push-back.php
+      - type: webphp
+        description: Log to New Relic
+        script: private/scripts/new_relic_deploy.php
+  deploy:
+    after:
+      - type: webphp
+        description: Log to New Relic
+        script: private/scripts/new_relic_deploy.php
+  # Also log sync_code so you can track new code going into dev/multidev.
